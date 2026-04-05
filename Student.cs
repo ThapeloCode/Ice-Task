@@ -11,6 +11,8 @@ namespace IceTaskOne
         private string Name;
         private int Marks;
 
+
+
         public Student(string Name, int Marks)
         { 
             this.Name = Name;
