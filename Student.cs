@@ -11,7 +11,10 @@ namespace IceTaskOne
     {
         private string Name;
         private int Marks;
-        Dictionary<string, int> students;
+        private int Total = 0;
+        private int Avarage;
+
+        private Dictionary<string, int> students;
 
         public Student()
         {
@@ -37,15 +40,18 @@ namespace IceTaskOne
         {
             foreach (var (Name, Marks) in students)
             {
-                Console.WriteLine($"{Name}: {Marks}");
+                Total += Marks;
+                Console.WriteLine("NAME     :   " + Name);
+                Console.WriteLine("MARKS    :   " + Marks);
             }
 
         }
 
-
-
-
-
-
+        public int GetAvarage(int NumberOfStudents) 
+        {
+            Avarage = Total/NumberOfStudents;
+            return Avarage;
+        }
+            
     }
 }

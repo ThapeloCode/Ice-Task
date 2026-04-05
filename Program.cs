@@ -1,30 +1,28 @@
-﻿
-
-using IceTaskOne;
+﻿using IceTaskOne;
 
 string Name;
 int Marks;
 byte NumberOfStudents;
 
-Student student = new Student(); 
-Dictionary<string, int> students = new Dictionary<string, int>();
+    Student student = new Student(); 
+    Dictionary<string, int> students = new Dictionary<string, int>();
 
-Console.WriteLine("ENTER NUMBER OF STUDENTS:");
-NumberOfStudents = Convert.ToByte(Console.ReadLine());
-
-while (NumberOfStudents <1)
-{
-    Console.ForegroundColor = ConsoleColor.Red;
-    Console.WriteLine("ADD ATLEAST ONE STUDENT!!");
     Console.WriteLine("ENTER NUMBER OF STUDENTS:");
-    Console.ResetColor();
-
     NumberOfStudents = Convert.ToByte(Console.ReadLine());
-}
+
+    //VALIDATE NUMBER OF STUDENTS TO BE ADDED
+    while (NumberOfStudents <1)
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("ADD ATLEAST ONE STUDENT!!");
+        Console.WriteLine("ENTER NUMBER OF STUDENTS:");
+        Console.ResetColor();
+
+        NumberOfStudents = Convert.ToByte(Console.ReadLine());
+    }
 
 
-
-    Console.ForegroundColor = ConsoleColor.Magenta;
+    Console.ForegroundColor = ConsoleColor.Green;
     Console.WriteLine("------------------------------");
     Console.WriteLine("STUDENT DETAILS");
     Console.WriteLine("------------------------------");
@@ -37,7 +35,7 @@ while (NumberOfStudents <1)
 
         //PROMPT NAME
         Console.Write("NAME     :   ");
-        Name = Console.ReadLine();
+        Name = Console.ReadLine().ToUpper();
 
         while (Name == "" || String.IsNullOrEmpty(Name))
         {
@@ -46,29 +44,43 @@ while (NumberOfStudents <1)
             Console.ResetColor();
 
             Console.Write("NAME     :   ");
-            Name = Console.ReadLine();
+            Name = Console.ReadLine().ToUpper().Trim();
         }
 
         //PROMPT MARKS
         Console.Write("MARKS    :   ");
         Marks = Convert.ToInt32(Console.ReadLine());
 
-        while (Marks == null || Int32.IsNegative(Marks))
+        while (Marks < 0)
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("MARKS CANNOT BE NULL OR NEGATIVE!!");
+            Console.WriteLine("MARKS CANNOT BE NEGATIVE!!");
             Console.ResetColor();
 
             Console.Write("MARKS    :   ");
-            Marks = Convert.ToInt32(Console.ReadLine());
 
+            Marks = Convert.ToInt32(Console.ReadLine());
         }
+
         //ADD STUDENT TO DICTIONARY
         student = new Student(Name, Marks); 
         students.Add(student.GetName(), student.GetMarks());
 
     }
-    
+
+Console.ForegroundColor = ConsoleColor.Green;
+Console.WriteLine("------------------------------");
+Console.ResetColor();
 
 //RETURN ALL STUDENTS
+Console.ForegroundColor = ConsoleColor.Green;  
 student.GetResults(students);
+
+//PRINT AVARAGE
+Console.WriteLine("..............................");
+Console.WriteLine("AVARAGE  :   " + student.GetAvarage(NumberOfStudents));
+Console.ResetColor();
+
+Console.ForegroundColor = ConsoleColor.Green;
+Console.WriteLine("------------------------------");
+Console.ResetColor();
