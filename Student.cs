@@ -6,12 +6,16 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace IceTaskOne
 {
 
+
     internal class Student
     {
         private string Name;
         private int Marks;
+        Dictionary<string, int> students;
 
-
+        public Student()
+        {
+        }
 
         public Student(string Name, int Marks)
         { 
@@ -29,6 +33,14 @@ namespace IceTaskOne
             return Marks;
         }
 
+        public void GetResults(Dictionary<string, int> students)
+        {
+            foreach (var (Name, Marks) in students)
+            {
+                Console.WriteLine($"{Name}: {Marks}");
+            }
+
+        }
 
 
 
