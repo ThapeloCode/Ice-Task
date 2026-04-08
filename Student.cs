@@ -47,6 +47,8 @@ namespace IceTaskOne
 
         }
 
+
+
         public int GetAvarage(int NumberOfStudents) 
         {
             Avarage = Total/NumberOfStudents;
